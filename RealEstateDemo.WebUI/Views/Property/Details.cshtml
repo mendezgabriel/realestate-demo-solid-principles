@@ -1,0 +1,103 @@
+﻿@model RealEstateDemo.Domain.Property
+@using RealEstateDemo.Domain
+
+@{
+    ViewBag.Title = "Property Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Property Details</h2>
+
+<a href="javascript:history.back();">Back</a>
+<br />
+<br />
+<table class="table table-bordered table-condensed table-striped table-hover">
+    <thead class="blue-row-header">
+        <tr>
+            <td style="width: 75%">Description</td>
+            <td>Agent Details</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <h3>
+                    @Model.Address.FullAddress
+                </h3>
+                <br />
+                <h4>
+                    <b>For&nbsp;@Enum.GetName(typeof(PropertyType), Model.Type)</b>&nbsp;
+                    <span class="text-danger">@Model.Price.ToString("C")</span>
+                </h4>
+                <p>
+                    @if (Model.Type == PropertyType.Rent)
+                    {
+                        var rentalProperty = (RentalProperty)Model;
+                        <span class="text-info">Bond: @rentalProperty.Bond.ToString("C")</span><br />
+                        <span class="text-info">Availability Date: @rentalProperty.AvailabilityDate.ToShortDateString()</span>
+                    }
+                    else if (Model.Type == PropertyType.Sale)
+                    {
+                        var sellableProperty = (SellableProperty)Model;
+                        if (sellableProperty.AuctionDate.HasValue)
+                        {
+                        <span class="text-info">Auction Date: @sellableProperty.AuctionDate.Value.ToString()</span>
+                        }
+                    }
+                </p>
+                <p class="text-justify">
+                    @Model.Description
+                </p>
+            </td>
+            <td>
+                <b>Name:</b>&nbsp;@Model.Agent.FullName<br />
+                <b>Phone:</b>&nbsp;@Model.Agent.PhoneNumber<br />
+                <b>Email:</b>&nbsp;@Model.Agent.Email
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+
+@using (Html.BeginForm("AddEnquiry", "Property", new { }, FormMethod.Post, new { @class = "form-inline" }))
+{
+    <div class="row show-grid">
+        <label class="col-sm-2 control-label">Email</label>
+        @Html.TextBox("email", null, new { id = "suburb", @class = "form-control", placeholder = "Contact email" })
+        @Html.Hidden("propertyId", Model.Id, new { id = "propertyId" })
+    </div>
+    <br />
+    <div class="row show-grid">
+        <label class="col-sm-2 control-label">Enquiry</label>
+        @Html.TextArea("body", null, new { id = "body", @class = "form-control", placeholder = "Enquiry" })
+        &nbsp;
+        <button type="submit" id="btnSubmit" class="btn btn-primary">Submit</button>
+    </div>
+}
+
+<div class="fadein">
+    @foreach (var photo in Model.Photos)
+    {       
+        <img src="@photo.Url"/>
+    }
+</div>
+
+<a href="javascript:history.back();">Back</a>
+
+@section scripts
+{
+    <script>
+
+        $(function () {
+            $('.fadein img:gt(0)').hide();
+            setInterval(function () {
+                $('.fadein :first-child').fadeOut()
+                   .next('img').fadeIn()
+                   .end().appendTo('.fadein');
+            },
+              4000);
+        });
+
+    </script>
+}

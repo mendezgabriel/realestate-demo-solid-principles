@@ -1,0 +1,97 @@
+﻿html, body
+{
+	height: 100%; /* The html and body elements cannot have any padding or margin. */
+}
+
+#wrap > .container
+{
+	padding-top: 60px;
+}
+
+code
+{
+	font-size: 80%;
+}
+
+.datepicker, .ui-datepicker
+{
+	z-index: 3000 !important;
+}
+
+.cursor-pointer
+{
+	cursor: pointer;
+	cursor: hand;
+}
+
+#error
+{
+	display: none;
+}
+
+a
+{
+	cursor: pointer;
+}
+
+.no-wrap {
+	white-space: nowrap;
+}
+
+span.disabled{
+	color: gray !important;
+}
+
+
+/* ------------------------------------------------- */	
+
+/* bootstrap overrides starts */
+
+.input-date
+{
+	min-width: 85px;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary
+{
+	background-color: #1473AA;
+	border-color: #126A9B;
+}
+
+.control-label 
+{
+	font-family: inherit;
+	color: #3a87ad;
+	margin: 0px;
+	padding-top: 9px;
+}
+
+.form-group.tablerow {
+	margin: 0px;
+}
+
+.nav-tabs{
+	padding-top: 5px;
+}
+
+
+/* bootstrap overrides ends */
+
+/* ------------------------------------------------- */
+
+.blue-row-header
+{
+	background-image: linear-gradient(#5f8ab9, #3e648d 50%, #385a7f);
+	color: White;
+}
+
+.fadein
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.fadein img { position:relative; left:0; top:0; }

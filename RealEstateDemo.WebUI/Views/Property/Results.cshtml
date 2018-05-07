@@ -1,0 +1,50 @@
+﻿@model List<RealEstateDemo.Domain.Property>
+@using RealEstateDemo.Domain
+
+@{
+    ViewBag.Title = "Search Results";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search Results</h2>
+
+@using (Html.BeginForm())
+{
+    <a href="javascript:history.back();">Back</a>
+    <br />
+    <br />
+    <table class="table table-bordered table-condensed table-striped table-hover">
+        <thead class="blue-row-header">
+            <tr>
+                <td>Type</td>
+                <td>Address</td>
+                <td>Description</td>
+                <td>Price</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var property in Model)
+            {
+                <tr>
+                    <td>
+                        <b>For&nbsp;@Enum.GetName(typeof(PropertyType), property.Type)</b>
+                    </td>
+                    <td>
+                        @property.Address.FullAddress
+                    </td>
+                    <td>
+                        @property.ShortDescription
+                    </td>
+                    <td>
+                        @property.Price.ToString("C")
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", "Property", new { Id = property.Id }, null )
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="javascript:history.back();">Back</a>
+}

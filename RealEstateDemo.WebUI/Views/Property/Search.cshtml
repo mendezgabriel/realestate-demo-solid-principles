@@ -1,0 +1,67 @@
+﻿@model RealEstateDemo.WebUI.Controllers.PropertyController.SearchViewModel
+
+@{
+    ViewBag.Title = "New Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Search</h2>
+
+@using (Html.BeginForm("Results","Property", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <div class="row show-grid">
+        <label class="col-sm-2 control-label">Suburb</label>
+        @Html.TextBox("suburb", null, new { id = "suburb", @class = "form-control", placeholder = "Suburb or Post Code" })
+        @Html.Hidden("suburbId", null, new { id = "suburbId" })
+    </div>
+    <br />
+    <div class="row show-grid">
+        <label class="col-sm-2 control-label">Price Range</label>
+        @Html.DropDownList("minPrice", Model.PriceRangeValues, new { id = "minPrice", @class = "form-control" })
+        @Html.DropDownList("maxPrice", Model.PriceRangeValues, new { id = "maxPrice", @class = "form-control" })
+        &nbsp;
+        <button type="submit" id="btnSearch" class="btn btn-primary">Search</button>
+    </div>
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var txtSuburb = $("#suburb");
+            var txtSuburbId = $("#suburbId");
+            txtSuburbId.val("");
+
+            txtSuburb.autocomplete({
+
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Property/AutoCompleteSuburb",
+                        type: "POST",
+                        dataType: "json",
+                        data: { searchText: txtSuburb.val() },
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+
+                                var displayData = item.Suburb.Name + ', ' + item.State.Abbreviation + ' ' + item.Suburb.PostCode + ' - ' + item.Country.Name;
+                                var displayValue = item.Suburb.Name + ', ' + item.State.Abbreviation + ' ' + item.Suburb.PostCode;
+                                var id = item.Suburb.Id;
+                                return { label: displayData, value: displayValue, id: id};
+                            }))
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "", results: ""
+                }
+            });
+
+            txtSuburb.on("autocompleteselect", function (event, ui) {
+
+                txtSuburbId.val(ui.item.id);
+            });
+        })
+    </script>
+}

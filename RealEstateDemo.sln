@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 Solution Items", "0 Solution Items", "{60D1F802-DA9F-4084-891C-E51FE61386FD}"
 	ProjectSection(SolutionItems) = preProject
 		.tfignore = .tfignore
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 Dependency Resolution", "1 Dependency Resolution", "{4DF4865F-4031-489B-8A93-9CBDF902A809}"

@@ -3,7 +3,7 @@
 ## Description:
 A real estate demo project with ASP.Net MVC following SOLID principles.
 
-An application developed on Oct 2014 using VS2013 by Gabriel Mendez (Github user mendezgabriel) as a web application using ASP.Net MVC4 as the UI to demonstrate how the data repositories can be easily switched from one implementation to another through the use of decoupling interfaces following the best practices architecture pattern known as the "Onion Architecture" http://jeffreypalermo.com/blog/the-onion-architecture-part-1/
+An application developed on Oct 2014 using VS2013 by Gabriel Mendez (Github user mendezgabriel) as a web application using ASP.Net MVC4 as the UI to demonstrate how the data repositories can be easily switched from one implementation to another through the use of decoupling interfaces following the best practices architecture pattern known as the ["Onion Architecture"](http://jeffreypalermo.com/blog/the-onion-architecture-part-1/)
 
 ## Overview:
 Because there are many ways to store data (SQL, Oracle, MySQL, NoSQL, External Services or APIs, etc) and there are also many ORMs available to get the data from a particular data store and, on top of that, technology keeps changing more frequently than we can adapt to it, it is often found that enterprise applications have the challenge to always use the best or more efficient data store retrieval method available but if you didn't follow the best practices and didn't use DI, you will find that changing the way a system stores/access data could be a complete nightmare. Making a change that big in a production application is usually discarded by management or product owners, leaving the system to fall behind its competitors and often letting it die completely at some point.
@@ -13,7 +13,7 @@ This project demonstrates just how to solve that problem by switching from one O
 ## Details:
 - It uses dependency injection to resolve all dependencies.
 
-- It uses SQL server the for the data store. The schema was generated using SQL Data Tools integration with VS. http://msdn.microsoft.com/en-au/data/tools.aspx
+- It uses SQL server the for the data store. The schema was generated using [SQL Data Tools integration with VS]( http://msdn.microsoft.com/en-au/data/tools.aspx)
 A full backup of the database can be found in the DbBackup folder of this solution in case it is needed to run the application.
 The database should compatible with SQL 2014 and previous. 
 
